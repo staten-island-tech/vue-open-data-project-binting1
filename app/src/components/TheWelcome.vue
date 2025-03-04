@@ -1,22 +1,20 @@
 <template>
-  <div class="card" v-for="bus in business" :key="bus.first_name">
-    <h2>{{  bus.name }}</h2>
-  </div>
+  <router-link :to="busiPath" card="card">
+      <h2>{{  business.first_name }}</h2>
+      <h3>{{  account_number }}</h3>
+  </router-link>
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
-const business = ref("");
-async function getBusiness() {
-  let res = await fetch("https://data.cityofnewyork.us/resource/ci93-uc8s.json");
-  let data  = await res.json(); 
-  business.value = data.resource;
-}
-
-onMounted(() => {
-  getBusiness();
+import { computed } from 'vue';
+const props = defineProps({
+  business: Object, 
+  account_number: Number,
 });
 
+const busiPath = computed (() => {
+  return `/business/${props.account_number}`;
+})
 </script>
 
 <style scoped>
