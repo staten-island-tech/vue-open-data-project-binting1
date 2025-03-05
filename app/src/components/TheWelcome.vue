@@ -1,19 +1,18 @@
 <template>
   <router-link :to="busiPath" card="card">
-      <h2>{{  business.first_name }}</h2>
-      <h3>{{  account_number }}</h3>
+      <h2>{{  business.account_number }}</h2>
   </router-link>
 </template>
 
 <script setup>
 import { computed } from 'vue';
+
 const props = defineProps({
   business: Object, 
-  account_number: Number,
 });
 
 const busiPath = computed (() => {
-  return `/business/${props.account_number}`;
+  return "https://data.cityofnewyork.us/resource/ci93-uc8s.json";
 })
 </script>
 
