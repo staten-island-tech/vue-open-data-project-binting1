@@ -1,7 +1,10 @@
 <template>
   <div>
-    <TheWelcome v-for="bus in business" :key="bus.account_number"></TheWelcome>
-    <!--this is rendered as a child component  -->
+    <TheWelcome 
+    v-for="business in businesses" 
+    :key="business.account_number" 
+    :business="business"
+    ></TheWelcome>
   </div>
 </template>
 
@@ -9,12 +12,13 @@
 import { ref, onMounted } from "vue";
 import TheWelcome from '../components/TheWelcome.vue'
 
-const business = ref([]);
+const businesses = ref([]);
+
 async function getBusiness () {
   try {
   let res = await fetch("https://data.cityofnewyork.us/resource/ci93-uc8s.json");
   let data = await res.json ();
-  business.value = data;
+  businesses.value = data;
   console.log("Fetched data:", data);
   } catch (error) {
   console.error("Error fetching data:", error);
