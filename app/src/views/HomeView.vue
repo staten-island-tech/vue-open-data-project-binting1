@@ -36,6 +36,7 @@ onMounted (() => {
   width: 80vw;
   margin: 30px auto;
   display: flex;
+  color: black;
   flex-wrap: wrap;
   flex-direction: row;
   align-items: center;
