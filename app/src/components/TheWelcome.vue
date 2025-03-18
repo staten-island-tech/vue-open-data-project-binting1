@@ -13,7 +13,7 @@ const props = defineProps({
 });
 
 const busiPath = computed (() => {
-  return "https://data.cityofnewyork.us/resource/ci93-uc8s.json";
+  return `/business/${props.vendor_formal_name}`;
 })
 </script>
 

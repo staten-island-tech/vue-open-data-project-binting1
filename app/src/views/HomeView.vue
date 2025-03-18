@@ -16,7 +16,7 @@ const businesses = ref([]);
 
 async function getBusiness () {
   try {
-  let res = await fetch("https://data.cityofnewyork.us/resource/ci93-uc8s.json");
+  let res = await fetch("https://data.cityofnewyork.us/resource/ci93-uc8s.json?$limit=10");
   let data = await res.json ();
   businesses.value = data;
   console.log("Fetched data:", data);
