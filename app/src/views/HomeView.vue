@@ -2,7 +2,7 @@
   <div>
     <TheWelcome 
     v-for="business in businesses" 
-    :key="business.account_number" 
+    :key="business.vendor_formal_name" 
     :business="business"
     ></TheWelcome>
   </div>
@@ -12,17 +12,12 @@
 import { ref, onMounted } from "vue";
 import TheWelcome from '../components/TheWelcome.vue'
 
-const businesses = ref([]);
+const businesses = ref("");
 
 async function getBusiness () {
-  try {
   let res = await fetch("https://data.cityofnewyork.us/resource/ci93-uc8s.json?$limit=10");
   let data = await res.json ();
-  businesses.value = data;
-  console.log("Fetched data:", data);
-  } catch (error) {
-  console.error("Error fetching data:", error);
-  }
+  businesses.value = data.results;
 }
 
 onMounted (() => {

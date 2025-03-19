@@ -9,11 +9,11 @@ import { computed } from 'vue';
 
 const props = defineProps({
   business: Object, 
-  vendor_formal_name: String,
+  account_number: Number,
 });
 
 const busiPath = computed (() => {
-  return `/business/${props.vendor_formal_name}`;
+  return `/business/${props.account_number}`;
 })
 </script>
 

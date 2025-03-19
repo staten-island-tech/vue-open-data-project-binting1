@@ -1,5 +1,6 @@
 <template>
     <div>
+      <h2>{{ business.first_name }}</h2>
     </div>
 </template>
 
@@ -8,21 +9,16 @@ import { ref, onMounted } from 'vue';
 import { useRoute} from 'vue-router';
 
 const route = useRoute();
-const small = ref('');
+const business = ref("");
 
-async function getSmall () {
-  try {
-  let res = await fetch(`https://data.cityofnewyork.us/resource/ci93-uc8s.json?vendor_formal_name=${route.params.vendor_formal_name}`);
+async function getBusiness () {
+  let res = await fetch(`https://data.cityofnewyork.us/resource/ci93-uc8s.json?$limit=10?vendor_formal_name=${route.params.account_number}`);
   let data = await res.json ();
-  small.value = data;
-  console.log("Fetched data:", data);
-  } catch (error) {
-  console.error("Error fetching data:", error);
-  }
+  business.value = data;
 }
 
 onMounted (() => {
-  getSmall();
+  getBusiness();
 });
 </script>
 
