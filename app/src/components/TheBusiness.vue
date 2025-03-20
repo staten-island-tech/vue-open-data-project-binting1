@@ -13,7 +13,7 @@ const props = defineProps({
 });
 
 const busiPath = computed (() => {
-  return `/business/${props.account_number}`;
+  return `/business/${props.business.account_number}`;
 })
 </script>
 

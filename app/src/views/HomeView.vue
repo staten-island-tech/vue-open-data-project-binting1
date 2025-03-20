@@ -10,14 +10,14 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
-import TheWelcome from '../components/TheWelcome.vue'
+import TheWelcome from '../components/TheBusiness.vue'
 
 const businesses = ref("");
 
 async function getBusiness () {
   let res = await fetch("https://data.cityofnewyork.us/resource/ci93-uc8s.json?$limit=10");
   let data = await res.json ();
-  businesses.value = data.results;
+  businesses.value = data;
 }
 
 onMounted (() => {
