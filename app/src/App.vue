@@ -1,6 +1,19 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import Chart from 'chart.js/auto';
+import { onMounted, ref } from 'vue'
+
+// async function getBusiness () {
+//   let res = await fetch("https://data.cityofnewyork.us/resource/ci93-uc8s.json?$limit=10");
+//   let data = await res.json ();
+//   businesses.value = data;
+// }
+
+// onMounted (() => {
+//   getBusiness();
+// });
+
 </script>
 
 <template>
