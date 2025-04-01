@@ -25,7 +25,7 @@ import { onMounted, ref } from 'vue'
 
       <nav>
         <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
+        <RouterLink to="/pie">Pie</RouterLink>
       </nav>
     </div>
   </header>
