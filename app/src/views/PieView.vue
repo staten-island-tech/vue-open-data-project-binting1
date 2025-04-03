@@ -1,41 +1,46 @@
 <template>
-  <div>
-    <h1>NYC Contracts Data (Pie Chart)</h1>
-    <PieChart v-if="chartData" :chartData="chartData" />
-    <p v-else>Loading data...</p>
+  <div style="width: 70vw; height:70vw;"><canvas id="business"></canvas>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from "vue";
-import PieChart from "@/components/PieChart.vue"; 
+import Chart from "chart.js/auto"; 
 
-const chartData = ref(null);
+const chartData = ref("");
 
-async function fetchData() {
-  try {
-    const response = await fetch("https://data.cityofnewyork.us/resource/ci93-uc8s.json");
-    const data = await response.json();
-
-    const categories = ["ASIAN", "HISPANIC", "BLACK", "NON-MINORITY"];
-    const groupedData = categories.map((ethnicity) => {
-      const filtered = data.filter((item) => item.ethnicity === ethnicity);
-      const avgValue =
-        filtered.reduce((sum, item) => sum + parseFloat(item.contract_value), 0) /
-        (filtered.length || 1);
-      return avgValue.toFixed(2);
-    });
-
-    chartData.value = {
-      labels: categories,
-      dataValues: groupedData,
-    };
-  } catch (error) {
-    console.error("Error fetching data:", error);
-  }
+async function getData() {
+  let res = await fetch("https://data.cityofnewyork.us/resource/ci93-uc8s.json?limit=50");
+  let data = await res.json();
+  chartData.value = data;
 }
 
-onMounted(fetchData);
+onMounted(async () => {
+  await getData();
+  new Chart(
+    document.getElementById('business'),
+    {
+      type:'bar',
+      data: {
+        labels:business.value.map(row=>row.ethnicity),
+        datasets: [
+          {
+            label:'Assets',
+            data:business.value.map(row => row.largest_value_of_contract),
+          }
+        ]
+      }, 
+      options: {
+        plugins: {
+          title: {
+            display:true,
+            text:"Business assets"
+          }
+        }
+      }
+    }
+  )
+});
 </script>
 
 <style scoped>
