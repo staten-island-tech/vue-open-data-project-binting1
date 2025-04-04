@@ -1,7 +1,10 @@
 <template>
+<div class="container">
   <router-link :to="busiPath">
-      <h2 class="card">{{  business.vendor_formal_name }}</h2>
+      <h2 class="text">{{  business.vendor_formal_name }}</h2>
   </router-link>
+</div>
+  
 </template>
 
 <script setup>
@@ -18,12 +21,19 @@ const busiPath = computed (() => {
 </script>
 
 <style scoped>
-.card {
-  width: 50%;
-  margin: 10px auto;
-  padding: 10px;
+.text {
   display: flex;
-  background-color: #f7bcbc;
+  text-align: center;
+}
+
+.container {
+  align-items: center;
+  height: 100px;
+  max-width: 300px;
+  margin: 5px auto;
+  padding: 10px;
+  background-color: #4c554c;
+
 }
 
 </style>

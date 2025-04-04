@@ -1,21 +1,21 @@
 <template>
-  <div>
-    <TheWelcome 
+  <div class="container">
+    <TheBusiness 
     v-for="business in businesses" 
     :key="business.vendor_formal_name" 
     :business="business"
-    ></TheWelcome>
+    ></TheBusiness>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from "vue";
-import TheWelcome from '../components/TheBusiness.vue'
+import TheBusiness from '../components/TheBusiness.vue'
 
 const businesses = ref("");
 
 async function getBusiness () {
-  let res = await fetch("https://data.cityofnewyork.us/resource/ci93-uc8s.json?$limit=10");
+  let res = await fetch("https://data.cityofnewyork.us/resource/ci93-uc8s.json?$limit=50");
   let data = await res.json ();
   businesses.value = data;
 }
@@ -28,10 +28,9 @@ onMounted (() => {
 
 <style scoped>
 .container {
-  width: 80vw;
-  margin: 30px auto;
+  width: 700px;
+  margin: 20px auto;
   display: flex;
-  color: black;
   flex-wrap: wrap;
   flex-direction: row;
   align-items: center;

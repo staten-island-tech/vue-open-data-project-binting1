@@ -4,39 +4,31 @@ import HelloWorld from './components/HelloWorld.vue'
 import Chart from 'chart.js/auto';
 import { onMounted, ref } from 'vue'
 
-// async function getBusiness () {
-//   let res = await fetch("https://data.cityofnewyork.us/resource/ci93-uc8s.json?$limit=10");
-//   let data = await res.json ();
-//   businesses.value = data;
-// }
-
-// onMounted (() => {
-//   getBusiness();
-// });
 
 </script>
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+    <img alt="Vue logo" class="logo" src="http://media.smapply.io/media/assets2/reviewrooms/smallbusinessservice/logo/SBS_NDD_LOGO.png" width="425" height="125" />
 
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+      <HelloWorld msg="Small Business Services in New York City" />
 
       <nav>
         <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/bar">Bar</RouterLink>
         <RouterLink to="/pie">Pie</RouterLink>
       </nav>
     </div>
+  
   </header>
-
   <RouterView />
+
 </template>
 
 <style scoped>
 header {
   line-height: 1;
-  max-height: 50vh;
 }
 
 .logo {
@@ -46,7 +38,7 @@ header {
 
 nav {
   width: 100%;
-  font-size: 12px;
+  font-size: 16spx;
   text-align: center;
   margin-top: 2rem;
 }
@@ -72,12 +64,13 @@ nav a:first-of-type {
 @media (min-width: 1024px) {
   header {
     display: flex;
+    flex-direction: column;
     place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+    margin: 80px;
   }
 
   .logo {
-    margin: 0 2rem 0 0;
+    margin: 0 0 3rem;
   }
 
   header .wrapper {
@@ -87,6 +80,7 @@ nav a:first-of-type {
   }
 
   nav {
+    align-items: center;
     text-align: left;
     margin-left: -1rem;
     font-size: 1rem;
